@@ -29,7 +29,7 @@ public class Main {
             }
         }
         int segundoControlador = 0, segundaVarTempRest = (array.length / 2) - 4, segundaVarTempSum = (array.length / 2) + 4;
-        for (int i = array.length; i >= contador ; i--) {
+        for (int i = array.length; i >= contador; i--) {
             if(segundoControlador == 2){
                 break;
             }
@@ -56,22 +56,36 @@ public class Main {
         imprimir(array);
     }
     public static void imprimir(char[][] array){
+        char[][] segundoArray = new char[array.length][array.length];
+        int varResta = 0;
         for (int i = 0; i < array.length; i++) {
-            int controlador = 2;
+            int variableTemporal = 0;
             for (int j = 0; j < array.length; j++) {
                 if(array[i][j] == '*'){
+                    variableTemporal++;
+                    segundoArray[i - varResta][j] = array[i][j];
+                }
+            }
+            if(variableTemporal == 0){
+                varResta++;
+            }
+        }
+        for (int i = 0; i < segundoArray.length; i++) {
+            int controlador = 2;
+            for (int j = 0; j < segundoArray.length; j++) {
+                if(segundoArray[i][j] == '*'){
                     controlador--;
                 }
                 if(controlador == 1){
-                    array[i][j] = '*';
+                    segundoArray[i][j] = '*';
                 }
             }
         }
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length; j++) {
+        for (int i = 0; i < segundoArray.length; i++) {
+            for (int j = 0; j < segundoArray.length; j++) {
                 System.out.print(' ');
-                if(array[i][j] == '*'){
-                    System.out.print(array[i][j]);
+                if(segundoArray[i][j] == '*'){
+                    System.out.print(segundoArray[i][j]);
                 }
                 else{
                     System.out.print(' ');
